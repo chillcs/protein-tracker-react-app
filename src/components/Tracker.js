@@ -1,9 +1,10 @@
 import React from 'react';
+import ProgressBar from './ProgressBar';
 
 const Tracker = () => {
   return (
     <div className="tracker">
-      <p>Tracker</p>
+      <ProgressBar />
     </div>
   );
 };

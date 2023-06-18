@@ -1,16 +1,33 @@
+@font-face {
+  font-family: 'Libre Franklin';
+  src: url('assets/LibreFranklin-VariableFont_wght.ttf') format('truetype');
+}
+
 :root {
   --headerHeight: 50px;
   --tabsHeight: 50px;
-  --colorPrimary: #f7f7f7;
-  --colorSecondary: #fafafa;
-  --colorAccent: red;
+  --colorPrimary: #cdcdcd;
+  --colorSecondary: #e0e0e0;
+  --colorAccent: rgb(255, 0, 0);
 }
 
 body {
+  position: relative;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  position: relative;
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
 }
 
 .app {
@@ -31,6 +48,7 @@ body {
   justify-content: center;
   align-items: center;
   background: var(--colorSecondary);
+  padding: 10px;
 }
 
 .tabs {
@@ -50,4 +68,27 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* TRACKER --- */
+/* TRACKER --- */
+/* TRACKER --- */
+
+.tracker {
+  width: 100%;
+  display: flex;
+}
+
+/* PROGRESS BAR --- */
+
+.progress-bar {
+  height: 50px;
+  width: 100%;
+  background-color: var(--colorPrimary);
+}
+
+.progress {
+  height: 50px;
+  width: 75%;
+  background-color: var(--colorAccent);
 }
