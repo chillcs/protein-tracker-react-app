@@ -8,7 +8,7 @@
   --tabsHeight: 50px;
   --colorPrimary: #cdcdcd;
   --colorSecondary: #e0e0e0;
-  --colorAccent: rgb(255, 0, 0);
+  --colorAccent: rgb(82, 230, 198);
 }
 
 body {
@@ -75,19 +75,43 @@ button {
 /* TRACKER --- */
 
 .tracker {
+  height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
 }
 
 /* PROGRESS BAR --- */
 
+.goal-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.goal-input input {
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  border: none;
+}
+
 .progress-bar {
+  position: relative;
   height: 50px;
   width: 100%;
   background-color: var(--colorPrimary);
 }
 
+.progress-bar p {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
 .progress {
+  position: absolute;
   height: 50px;
   width: 75%;
   background-color: var(--colorAccent);
