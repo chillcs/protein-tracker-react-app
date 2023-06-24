@@ -8,7 +8,8 @@
   --tabsHeight: 50px;
   --colorPrimary: #cdcdcd;
   --colorSecondary: #e0e0e0;
-  --colorAccent: rgb(82, 230, 198);
+  --colorAccent: #ff0000;
+  --colorText: #000000;
 }
 
 body {
@@ -40,6 +41,8 @@ button {
   justify-content: center;
   align-items: center;
   background: var(--colorPrimary);
+  color: var(--colorText);
+  font-weight: 500;
 }
 
 .main {
@@ -48,6 +51,7 @@ button {
   justify-content: center;
   align-items: center;
   background: var(--colorSecondary);
+  color: var(--colorText);
   padding: 10px;
 }
 
@@ -59,7 +63,7 @@ button {
   bottom: 0;
   transform: translateX(-50%);
   display: flex;
-  background: var(--colorPrimary);
+  background: var(--colorSecondary);
 }
 
 .tab {
@@ -68,6 +72,14 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--colorPrimary);
+  color: var(--colorText);
+  opacity: 0.5;
+}
+
+.tab-active {
+  opacity: 1;
+  font-weight: 500;
 }
 
 /* TRACKER --- */

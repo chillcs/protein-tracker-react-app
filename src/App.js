@@ -4,8 +4,9 @@ import Library from './components/Library';
 
 function App() {
   const [active, setActive] = useState(0);
+
   function openTab(event) {
-    const target = event.currentTarget.id;
+    const target = parseInt(event.currentTarget.id);
     setActive(target);
   }
 
@@ -15,23 +16,23 @@ function App() {
         <div className="logo">PROTEIN</div>
       </div>
       <div className="main">
-        {parseInt(active) === 0 && <Tracker />}
-        {parseInt(active) === 1 && <Library />}
+        {active === 0 && <Tracker />}
+        {active === 1 && <Library />}
       </div>
       <div className="tabs">
         <button
-          className="tab"
+          className={active === 0 ? 'tab tab-active' : 'tab'}
           id={0}
           onClick={openTab}
         >
-          TRACKER
+          LOG
         </button>
         <button
-          className="tab"
+          className={active === 1 ? 'tab tab-active' : 'tab'}
           id={1}
           onClick={openTab}
         >
-          LIBRARY
+          FOOD
         </button>
       </div>
     </div>
