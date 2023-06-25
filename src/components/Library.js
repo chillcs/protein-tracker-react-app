@@ -1,9 +1,12 @@
 import React from 'react';
+import SavedFoods from './SavedFoods';
+import NewFood from './NewFood';
 
 const Library = () => {
   return (
-    <div className="Library">
-      <p>Library</p>
+    <div className="library">
+      <SavedFoods />
+      <NewFood />
     </div>
   );
 };

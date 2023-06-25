@@ -5,11 +5,12 @@
 
 :root {
   --headerHeight: 50px;
-  --tabsHeight: 50px;
+  --elementHeight: 50px;
   --colorPrimary: #cdcdcd;
   --colorSecondary: #e0e0e0;
   --colorAccent: #ff0000;
   --colorText: #000000;
+  --space: 10px;
 }
 
 body {
@@ -20,15 +21,35 @@ body {
   font-family: 'Libre Franklin', sans-serif;
 }
 
+h1,
+h2,
+p,
 button {
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+p {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+button {
+  font-size: 15px;
+  font-weight: 400;
   background: none;
   border: none;
-  font: inherit;
-  color: inherit;
   cursor: pointer;
-  outline: none;
 }
 
 .app {
@@ -42,21 +63,20 @@ button {
   align-items: center;
   background: var(--colorPrimary);
   color: var(--colorText);
-  font-weight: 500;
 }
 
 .main {
-  height: calc(100vh - var(--headerHeight) - var(--tabsHeight));
+  height: calc(100vh - var(--headerHeight) - var(--elementHeight));
   display: flex;
   justify-content: center;
   align-items: center;
   background: var(--colorSecondary);
   color: var(--colorText);
-  padding: 10px;
+  padding: var(--space);
 }
 
 .tabs {
-  height: var(--tabsHeight);
+  height: var(--elementHeight);
   width: 100%;
   position: absolute;
   left: 50%;
@@ -79,7 +99,6 @@ button {
 
 .tab-active {
   opacity: 1;
-  font-weight: 500;
 }
 
 /* TRACKER --- */
@@ -91,40 +110,82 @@ button {
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: var(--space);
 }
 
-/* PROGRESS BAR --- */
+/* PROGRESS --- */
 
 .goal-input {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space);
 }
 
 .goal-input input {
-  height: 50px;
-  width: 50px;
+  height: var(--elementHeight);
+  width: var(--headerHeight);
   text-align: center;
   border: none;
 }
 
-.progress-bar {
+.progress-bar-goal {
   position: relative;
-  height: 50px;
+  height: var(--elementHeight);
   width: 100%;
   background-color: var(--colorPrimary);
 }
 
-.progress-bar p {
+.progress-bar-goal p {
   position: absolute;
-  width: 100%;
-  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.progress {
+.progress-bar-progress {
   position: absolute;
-  height: 50px;
+  height: var(--elementHeight);
   width: 75%;
   background-color: var(--colorAccent);
+}
+
+/* FOOD LOG --- */
+
+.food-log {
+  height: calc(100% - 2 * var(--elementHeight) - 4 * var(--space));
+  background: var(--colorPrimary);
+  overflow-y: auto;
+}
+
+/* LIBRARY --- */
+/* LIBRARY --- */
+/* LIBRARY --- */
+
+.library {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+}
+
+/* SAVED FOODS --- */
+
+.saved-foods {
+  height: calc(100% - var(--elementHeight) - 3 * var(--space));
+  background: var(--colorPrimary);
+  overflow-y: auto;
+}
+
+/* ADD NEW FOOD --- */
+
+.new-food {
+  height: 50px;
+  background: var(--colorPrimary);
+}
+
+.add-food {
+  height: 100%;
+  width: 100%;
 }

@@ -13,7 +13,9 @@ function App() {
   return (
     <div className="app">
       <div className="header">
-        <div className="logo">PROTEIN</div>
+        <div className="logo">
+          <h1>PROTEIN</h1>
+        </div>
       </div>
       <div className="main">
         {active === 0 && <Tracker />}

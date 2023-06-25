@@ -1,10 +1,12 @@
 import React from 'react';
-import ProgressBar from './ProgressBar';
+import Progress from './Progress';
+import FoodLog from './FoodLog';
 
 const Tracker = () => {
   return (
     <div className="tracker">
-      <ProgressBar />
+      <Progress />
+      <FoodLog />
     </div>
   );
 };

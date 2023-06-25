@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-const ProgressBar = () => {
+const Progress = () => {
   const [goal, setGoal] = useState('');
 
   useEffect(() => {
@@ -21,8 +21,9 @@ const ProgressBar = () => {
   }, [goal]);
 
   return (
-    <>
+    <div className="progress">
       <div className="goal-input">
+        <h2>SET GOAL</h2>
         <input
           type="number"
           id="setGoal"
@@ -30,12 +31,12 @@ const ProgressBar = () => {
           onChange={handleChange}
         />
       </div>
-      <div className="progress-bar">
-        <div className="progress"></div>
+      <div className="progress-bar-goal">
+        <div className="progress-bar-progress"></div>
         <p>0 / {goal} GRAMS</p>
       </div>
-    </>
+    </div>
   );
 };
 
-export default ProgressBar;
+export default Progress;
