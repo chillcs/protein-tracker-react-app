@@ -65,7 +65,26 @@ const Library = () => {
         <div className="section-title">
           <h2>SAVED FOODS</h2>
         </div>
-        <ul>
+        <ul className="table">
+          <li>
+            <div
+              className="row title-row"
+              style={{
+                backgroundColor: 'var(--colorSecondary)',
+              }}
+            >
+              <div className="cell cell-food-name">
+                <h3>Name</h3>
+              </div>
+              <div className="cell cell-grams-of-protein">
+                <h3>Amount</h3>
+              </div>
+              <div className="cell cell-measurement">
+                <h3>Unit</h3>
+              </div>
+              <div className="cell cell-delete"></div>
+            </div>
+          </li>
           {foodItems.map((item, index) => (
             <li key={index}>
               <div
@@ -75,60 +94,74 @@ const Library = () => {
                     index % 2 === 1 ? 'inherit' : 'var(--colorPrimary)',
                 }}
               >
-                <div className="cell cell-food-name">{item.foodName}</div>
-                <div className="cell cell-grams-of-protein">
-                  {item.gramsOfProtein}g
+                <div className="cell cell-food-name">
+                  <p>{item.foodName}</p>
                 </div>
-                <div className="cell cell-measurement">{item.measurement}</div>
+                <div className="cell cell-grams-of-protein">
+                  <p>{item.gramsOfProtein}g</p>
+                </div>
+                <div className="cell cell-measurement">
+                  <p>{item.measurement}</p>
+                </div>
                 <div className="cell cell-delete">
-                  <button onClick={() => handleDelete(index)}>Delete</button>
+                  <button onClick={() => handleDelete(index)}>
+                    <p>Delete</p>
+                  </button>
                 </div>
               </div>
             </li>
           ))}
         </ul>
       </div>
-      <button
-        className="add-food-btn"
-        onClick={handleFormToggle}
-      >
-        {isOpen ? 'ADD FOOD －' : 'ADD FOOD ＋'}
-      </button>
-      {isOpen && (
-        <form
-          className="add-food-form"
-          onSubmit={handleSubmit}
+      <div className="add-food">
+        <button
+          className="add-food-btn"
+          onClick={handleFormToggle}
         >
-          <input
-            className="input-food-name"
-            type="text"
-            placeholder="Name"
-            value={foodName}
-            onChange={(e) => setFoodName(e.target.value)}
-          />
-          <input
-            className="input-grams-of-protein"
-            type="number"
-            placeholder="Grams"
-            value={gramsOfProtein}
-            onChange={(e) => setGramsOfProtein(e.target.value)}
-          />
-          <input
-            className="input-measurement"
-            type="text"
-            placeholder="Units"
-            value={measurement}
-            onChange={(e) => setMeasurement(e.target.value)}
-          />
-          <button
-            className="input-submit"
-            type="submit"
+          <h2 className="section-title">
+            {isOpen ? 'HIDE FORM －' : 'ADD FOOD ＋'}
+          </h2>
+        </button>
+        {isOpen && (
+          <form
+            className="add-food-form"
+            onSubmit={handleSubmit}
           >
-            Submit
-          </button>
-          {errorMessage && <p>{errorMessage}</p>}
-        </form>
-      )}
+            <div className="form-group">
+              <input
+                className="input-food-name"
+                type="text"
+                placeholder="Name"
+                value={foodName}
+                onChange={(e) => setFoodName(e.target.value)}
+              />
+              <input
+                className="input-grams-of-protein"
+                type="number"
+                placeholder="Amount"
+                value={gramsOfProtein}
+                onChange={(e) => setGramsOfProtein(e.target.value)}
+              />
+              <input
+                className="input-measurement"
+                type="text"
+                placeholder="Unit"
+                value={measurement}
+                onChange={(e) => setMeasurement(e.target.value)}
+              />
+              <button
+                className="input-submit"
+                type="submit"
+              >
+                <p>Submit</p>
+              </button>
+            </div>
+            <div className="form-error-message">
+              {errorMessage && <p>{errorMessage}</p>}
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
 };
