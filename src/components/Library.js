@@ -47,6 +47,9 @@ const Library = () => {
     setGramsOfProtein('');
     setMeasurement('');
     setErrorMessage('');
+
+    // Toggle form
+    handleFormToggle();
   };
 
   const handleFormToggle = () => {
@@ -85,6 +88,11 @@ const Library = () => {
               <div className="cell cell-delete"></div>
             </div>
           </li>
+          {foodItems.length === 0 && (
+            <p className="empty-table-error-message">
+              No items have been added yet.
+            </p>
+          )}
           {foodItems.map((item, index) => (
             <li key={index}>
               <div
