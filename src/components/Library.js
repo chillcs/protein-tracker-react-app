@@ -4,7 +4,7 @@ const Library = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [foodName, setFoodName] = useState('');
   const [gramsOfProtein, setGramsOfProtein] = useState('');
-  const [measurement, setMeasurement] = useState('');
+  const [calories, setCalories] = useState('');
   const [foodItems, setFoodItems] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -23,15 +23,15 @@ const Library = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!foodName || !measurement || !gramsOfProtein) {
+    if (!foodName || !gramsOfProtein || !calories) {
       setErrorMessage('Please fill in all fields');
       return;
     }
 
     const newFoodItem = {
       foodName,
-      measurement,
       gramsOfProtein: parseFloat(gramsOfProtein),
+      calories: parseFloat(calories),
     };
 
     // Store newFoodItem in local storage
@@ -45,7 +45,7 @@ const Library = () => {
     setFoodItems(sortedItems);
     setFoodName('');
     setGramsOfProtein('');
-    setMeasurement('');
+    setCalories('');
     setErrorMessage('');
 
     // Toggle form
@@ -66,24 +66,24 @@ const Library = () => {
     <div className="library">
       <div className="saved-foods">
         <div className="section-title">
-          <h2>SAVED FOODS</h2>
+          <h2>MY FOODS</h2>
         </div>
         <ul className="table">
           <li>
             <div
               className="row title-row"
               style={{
-                backgroundColor: 'var(--colorSecondary)',
+                backgroundColor: 'var(--colorPrimary)',
               }}
             >
               <div className="cell cell-food-name">
                 <h3>Name</h3>
               </div>
               <div className="cell cell-grams-of-protein">
-                <h3>Amount</h3>
+                <h3>Protein</h3>
               </div>
-              <div className="cell cell-measurement">
-                <h3>Unit</h3>
+              <div className="cell cell-calories">
+                <h3>Calories</h3>
               </div>
               <div className="cell cell-delete"></div>
             </div>
@@ -99,21 +99,23 @@ const Library = () => {
                 className="row"
                 style={{
                   backgroundColor:
-                    index % 2 === 1 ? 'inherit' : 'var(--colorPrimary)',
+                    index % 2 === 1
+                      ? 'var(--colorPrimary)'
+                      : 'var(--colorPrimaryAlternate)',
                 }}
               >
                 <div className="cell cell-food-name">
                   <p>{item.foodName}</p>
                 </div>
                 <div className="cell cell-grams-of-protein">
-                  <p>{item.gramsOfProtein}g</p>
+                  <p>{item.gramsOfProtein} g</p>
                 </div>
-                <div className="cell cell-measurement">
-                  <p>{item.measurement}</p>
+                <div className="cell cell-calories">
+                  <p>{item.calories} cals</p>
                 </div>
                 <div className="cell cell-delete">
                   <button onClick={() => handleDelete(index)}>
-                    <p>Delete</p>
+                    <p>✕</p>
                   </button>
                 </div>
               </div>
@@ -126,8 +128,8 @@ const Library = () => {
           className="add-food-btn"
           onClick={handleFormToggle}
         >
-          <h2 className="section-title">
-            {isOpen ? 'HIDE FORM －' : 'ADD FOOD ＋'}
+          <h2 className="button-title">
+            {isOpen ? 'ADD FOOD －' : 'ADD FOOD ＋'}
           </h2>
         </button>
         {isOpen && (
@@ -139,23 +141,23 @@ const Library = () => {
               <input
                 className="input-food-name"
                 type="text"
-                placeholder="Name"
+                placeholder="Food Name"
                 value={foodName}
                 onChange={(e) => setFoodName(e.target.value)}
               />
               <input
                 className="input-grams-of-protein"
                 type="number"
-                placeholder="Amount"
+                placeholder="Grams of Protein"
                 value={gramsOfProtein}
                 onChange={(e) => setGramsOfProtein(e.target.value)}
               />
               <input
-                className="input-measurement"
-                type="text"
-                placeholder="Unit"
-                value={measurement}
-                onChange={(e) => setMeasurement(e.target.value)}
+                className="input-calories"
+                type="number"
+                placeholder="Calories"
+                value={calories}
+                onChange={(e) => setCalories(e.target.value)}
               />
               <button
                 className="input-submit"
