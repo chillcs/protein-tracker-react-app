@@ -5,6 +5,9 @@ const Tracker = () => {
   const [foodItems, setFoodItems] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [loggedFood, setLoggedFood] = useState([]);
+  const [selectedFood, setSelectedFood] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const storedGoal = localStorage.getItem('storedGoal');
@@ -33,13 +36,35 @@ const Tracker = () => {
   }, [goal]);
 
   const handleDropdownToggle = () => {
+    if (isDropdownOpen) {
+      setSelectedFood('');
+      setQuantity('');
+    }
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleAddFood = (foodItem, quantity) => {
-    const updatedLoggedFood = [...loggedFood, { ...foodItem, quantity }];
-    setLoggedFood(updatedLoggedFood);
-    localStorage.setItem('loggedFood', JSON.stringify(updatedLoggedFood));
+  const handleAddFood = () => {
+    if (!selectedFood || !quantity) {
+      setErrorMessage('Please fill in all fields');
+      return;
+    }
+
+    if (selectedFood && quantity) {
+      const foodItem = foodItems.find((item) => item.foodName === selectedFood);
+      const newLoggedFood = {
+        foodName: selectedFood,
+        gramsOfProtein: foodItem.gramsOfProtein,
+        calories: foodItem.calories,
+        quantity: parseInt(quantity),
+      };
+      setLoggedFood([...loggedFood, newLoggedFood]);
+      localStorage.setItem(
+        'loggedFood',
+        JSON.stringify([...loggedFood, newLoggedFood])
+      );
+      setSelectedFood('');
+      setQuantity('');
+    }
   };
 
   const handleDeleteFood = (index) => {
@@ -139,26 +164,46 @@ const Tracker = () => {
           </h2>
         </button>
         {isDropdownOpen && (
-          <ul className="food-dropdown">
-            {foodItems.map((item, index) => (
-              <li key={index}>
-                <p>{item.foodName}</p>
-                <p>{item.gramsOfProtein} g</p>
-                <p>{item.calories} cals</p>
-                <button
-                  className="add-food-button"
-                  onClick={() => {
-                    const quantity = parseInt(prompt('Enter quantity', '1'));
-                    if (!isNaN(quantity)) {
-                      handleAddFood(item, quantity);
-                    }
-                  }}
+          <div className="form-group">
+            <select
+              className="input-food-dropdown"
+              value={selectedFood}
+              onChange={(e) => setSelectedFood(e.target.value)}
+              style={{
+                fontSize: '12px',
+                fontWeight: '200',
+                color: '#9A9A9A',
+              }}
+            >
+              <option value="">
+                <p>Select Food</p>
+              </option>
+              {foodItems.map((item, index) => (
+                <option
+                  key={index}
+                  value={item.foodName}
                 >
-                  Add Food
-                </button>
-              </li>
-            ))}
-          </ul>
+                  {item.foodName}
+                </option>
+              ))}
+            </select>
+            <input
+              type="number"
+              className="quantity-input"
+              placeholder="Quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+            <button
+              className="input-submit"
+              onClick={handleAddFood}
+            >
+              <p>Add Food</p>
+            </button>
+            <div className="form-error-message">
+              {errorMessage && <p>{errorMessage}</p>}
+            </div>
+          </div>
         )}
       </div>
     </div>

@@ -66,6 +66,10 @@ input {
   font-weight: 200;
 }
 
+input::placeholder {
+  color: #a9a9a9;
+}
+
 li {
   list-style: none;
 }
@@ -271,4 +275,13 @@ li {
   padding: 0 10px;
   text-align: left;
   background-color: var(--colorPrimary);
+}
+
+/* NEW LOG --- */
+
+.input-food-dropdown {
+  margin-top: 10px;
+  padding: 10px 5px;
+  padding-left: 5px;
+  border: none;
 }
