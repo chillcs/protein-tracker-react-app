@@ -123,7 +123,7 @@ const Library = () => {
           ))}
         </ul>
       </div>
-      <div className="add-food">
+      <div className="btn-container">
         <button
           className="add-food-btn"
           onClick={handleFormToggle}

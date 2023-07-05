@@ -119,8 +119,8 @@ li {
   opacity: 1;
 }
 
-.tracker,
-.library {
+.library,
+.tracker {
   height: calc(100% - 20px);
   width: 100%;
   display: flex;
@@ -128,6 +128,99 @@ li {
   gap: var(--space);
   padding: var(--space);
   overflow-y: auto;
+}
+
+/* LIBRARY --- */
+/* LIBRARY --- */
+/* LIBRARY --- */
+
+/* SAVED FOODS --- */
+
+.section-title {
+  height: var(--elementHeight);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  background: var(--colorPrimary);
+}
+
+.title-row {
+  margin-top: 10px;
+  background: var(--colorSecondary);
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  background: var(--colorPrimary);
+}
+
+.empty-table-error-message {
+  padding: 10px 0;
+  padding-left: 10px;
+}
+
+.cell {
+  padding: 10px 0;
+  padding-left: 10px;
+}
+
+.cell-food-name,
+.input-food-name {
+  width: 50%;
+}
+
+.cell-grams-of-protein,
+.cell-calories {
+  width: 20%;
+  text-align: right;
+}
+
+.cell-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+}
+
+/* ADD FOOD --- */
+
+.btn-container {
+  min-height: var(--elementHeight);
+}
+
+.add-food-btn {
+  height: var(--elementHeight);
+  padding: 0 10px;
+  text-align: left;
+  background-color: var(--colorPrimary);
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  margin-top: 10px;
+  padding: 10px 0;
+  padding-left: 10px;
+  border: none;
+  width: calc(100% - 10px);
+}
+
+.input-submit {
+  height: var(--elementHeight);
+  margin-top: 10px;
+  padding: 10px 0;
+  background: var(--colorAccent);
+  width: 25%;
+}
+
+.form-error-message {
+  padding: 10px 0;
 }
 
 /* TRACKER --- */
@@ -173,100 +266,9 @@ li {
 
 /* FOOD LOG --- */
 
-.food-log {
-  height: calc(100% - 2 * var(--elementHeight) - 4 * var(--space));
-  background: var(--colorPrimary);
-}
-
-/* LIBRARY --- */
-/* LIBRARY --- */
-/* LIBRARY --- */
-
-/* SAVED FOODS --- */
-
-.section-title {
-  height: var(--elementHeight);
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-  background: var(--colorPrimary);
-}
-
-.title-row {
-  margin-top: 10px;
-  background: var(--colorSecondary);
-}
-
-.row {
-  width: 100%;
-  display: flex;
-  gap: 5px;
-  background: var(--colorPrimary);
-}
-
-.empty-table-error-message {
-  padding: 10px 0;
-  padding-left: 5px;
-}
-
-.cell {
-  padding: 10px 0;
-  padding-left: 10px;
-}
-
-.cell-food-name,
-.input-food-name {
-  width: 50%;
-}
-
-.cell-grams-of-protein,
-.cell-calories {
-  width: 20%;
-  text-align: right;
-}
-
-.cell-delete {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10%;
-}
-
-/* ADD FOOD --- */
-
-.add-food {
-  min-height: var(--elementHeight);
-}
-
-.add-food-btn {
+.new-log-btn {
   height: var(--elementHeight);
   padding: 0 10px;
   text-align: left;
   background-color: var(--colorPrimary);
-}
-
-.form-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group input {
-  margin-top: 10px;
-  padding: 10px 0;
-  padding-left: 10px;
-  border: none;
-  width: calc(100% - 10px);
-}
-
-.input-submit {
-  height: var(--elementHeight);
-  margin-top: 10px;
-  padding: 10px 0;
-  background: var(--colorAccent);
-  width: 25%;
-}
-
-.form-error-message {
-  padding: 10px 0;
 }
