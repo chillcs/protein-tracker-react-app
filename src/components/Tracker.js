@@ -8,6 +8,8 @@ const Tracker = () => {
   const [selectedFood, setSelectedFood] = useState('');
   const [quantity, setQuantity] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [totalProtein, setTotalProtein] = useState(0);
+  const [totalCalories, setTotalCalories] = useState(0);
 
   useEffect(() => {
     const storedGoal = localStorage.getItem('storedGoal');
@@ -19,12 +21,27 @@ const Tracker = () => {
     if (storedFoodItems) {
       setFoodItems(JSON.parse(storedFoodItems));
     }
-
-    const storedLoggedFood = localStorage.getItem('loggedFood');
-    if (storedLoggedFood) {
-      setLoggedFood(JSON.parse(storedLoggedFood));
-    }
   }, []);
+
+  useEffect(() => {
+    const proteinSum = loggedFood.reduce(
+      (sum, item) => sum + item.quantity * item.gramsOfProtein,
+      0
+    );
+    setTotalProtein(proteinSum);
+
+    localStorage.setItem('loggedFood', JSON.stringify(loggedFood));
+  }, [loggedFood]);
+
+  useEffect(() => {
+    const caloriesSum = loggedFood.reduce(
+      (sum, item) => sum + item.quantity * item.calories,
+      0
+    );
+    setTotalCalories(caloriesSum);
+
+    localStorage.setItem('loggedFood', JSON.stringify(loggedFood));
+  }, [loggedFood]);
 
   const handleChange = (event) => {
     const inputGoal = event.target.value;
@@ -58,20 +75,23 @@ const Tracker = () => {
         quantity: parseInt(quantity),
       };
       setLoggedFood([...loggedFood, newLoggedFood]);
-      localStorage.setItem(
-        'loggedFood',
-        JSON.stringify([...loggedFood, newLoggedFood])
-      );
       setSelectedFood('');
       setQuantity('');
+
+      handleFormToggle();
     }
+  };
+
+  const handleFormToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleDeleteFood = (index) => {
     const updatedLoggedFood = loggedFood.filter((_, i) => i !== index);
     setLoggedFood(updatedLoggedFood);
-    localStorage.setItem('loggedFood', JSON.stringify(updatedLoggedFood));
   };
+
+  const width = (totalProtein / goal) * 100;
 
   return (
     <div className="tracker">
@@ -86,9 +106,17 @@ const Tracker = () => {
           />
         </div>
         <div className="progress-bar-goal">
-          <div className="progress-bar-progress"></div>
-          <p>0 / {goal} GRAMS</p>
+          <div
+            className="progress-bar-progress"
+            style={{ width: width + '%' }}
+          ></div>
+          <p>
+            {totalProtein} / {goal} GRAMS
+          </p>
         </div>
+      </div>
+      <div className="calories">
+        <p>Total Calories: {totalCalories} cals</p>
       </div>
       <div className="food-log">
         <div className="section-title">
@@ -103,7 +131,7 @@ const Tracker = () => {
               }}
             >
               <div className="cell cell-food-name">
-                <h3>Qty & Name</h3>
+                <h3>Log</h3>
               </div>
               <div className="cell cell-grams-of-protein">
                 <h3>Protein</h3>
@@ -114,11 +142,6 @@ const Tracker = () => {
               <div className="cell cell-delete"></div>
             </div>
           </li>
-          {loggedFood.length === 0 && (
-            <p className="empty-table-error-message">
-              No items have been added yet.
-            </p>
-          )}
           {loggedFood.map((item, index) => (
             <li key={index}>
               <div
@@ -154,6 +177,11 @@ const Tracker = () => {
           ))}
         </ul>
       </div>
+      {loggedFood.length === 0 && (
+        <p className="empty-table-error-message">
+          No items have been added yet.
+        </p>
+      )}
       <div className="btn-container">
         <button
           className="new-log-btn"
@@ -175,9 +203,7 @@ const Tracker = () => {
                 color: '#9A9A9A',
               }}
             >
-              <option value="">
-                <p>Select Food</p>
-              </option>
+              <option value="">Select Food</option>
               {foodItems.map((item, index) => (
                 <option
                   key={index}

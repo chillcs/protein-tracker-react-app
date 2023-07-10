@@ -88,11 +88,6 @@ const Library = () => {
               <div className="cell cell-delete"></div>
             </div>
           </li>
-          {foodItems.length === 0 && (
-            <p className="empty-table-error-message">
-              No items have been added yet.
-            </p>
-          )}
           {foodItems.map((item, index) => (
             <li key={index}>
               <div
@@ -123,6 +118,11 @@ const Library = () => {
           ))}
         </ul>
       </div>
+      {foodItems.length === 0 && (
+        <p className="empty-table-error-message">
+          No items have been added yet.
+        </p>
+      )}
       <div className="btn-container">
         <button
           className="add-food-btn"

@@ -264,8 +264,13 @@ li {
 .progress-bar-progress {
   position: absolute;
   height: var(--elementHeight);
-  width: 75%;
   background-color: var(--colorAccent);
+}
+
+.calories {
+  text-align: right;
+  padding: 10px 0;
+  padding-right: 10px;
 }
 
 /* FOOD LOG --- */
